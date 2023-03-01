@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Booked Dates</title>
+</head>
+<body>
+    <h1>Booked Dates</h1>
+    <div id="booked-dates"></div>
+
+    <script>
+        // Retrieve the booked dates from the server
+        fetch('get_booked_dates.php')
+            .then(response => response.json())
+            .then(bookedDates => {
+                // Display the booked dates on the page
+                const bookedDatesDiv = document.getElementById('booked-dates');
+                const listItems = bookedDates.map(date => `<li>${date}</li>`);
+                bookedDatesDiv.innerHTML = `<ul>${listItems.join('')}</ul>`;
+            })
+            .catch(error => console.error(error));
+    </script>
+</body>
+</html>
